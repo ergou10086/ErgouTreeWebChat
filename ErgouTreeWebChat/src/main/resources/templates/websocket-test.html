@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二狗树聊天 - WebSocket测试</title>
+    <link rel="stylesheet" href="/css/tailwind.min.css">
+    <style>
+        .status-item, .message-item {
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+        .status-item.信息 { background-color: #e5e7eb; }
+        .status-item.成功 { background-color: #d1fae5; }
+        .status-item.错误 { background-color: #fee2e2; }
+        .message-item.发送 { background-color: #dbeafe; text-align: right; }
+        .message-item.接收 { background-color: #f3f4f6; }
+        #statusOutput, #messagesOutput {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+    <div class="container mx-auto max-w-4xl bg-white rounded-xl shadow-md overflow-hidden p-6">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">WebSocket测试工具</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 连接控制 -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-lg font-semibold mb-4">连接控制</h2>
+                
+                <div class="mb-4">
+                    <label for="usernameInput" class="block text-sm font-medium text-gray-700 mb-1">用户名</label>
+                    <input type="text" id="usernameInput" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入用户名">
+                </div>
+                
+                <div class="flex space-x-2">
+                    <button id="connectBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">连接</button>
+                    <button id="disconnectBtn" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" disabled>断开</button>
+                </div>
+                
+                <div class="mt-4">
+                    <h3 class="text-md font-medium mb-2">连接状态</h3>
+                    <div id="statusOutput" class="bg-white"></div>
+                </div>
+            </div>
+            
+            <!-- 消息收发 -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h2 class="text-lg font-semibold mb-4">消息收发</h2>
+                
+                <div class="mb-4">
+                    <label for="messageInput" class="block text-sm font-medium text-gray-700 mb-1">消息内容</label>
+                    <textarea id="messageInput" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="请输入消息内容" rows="3" disabled></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <button id="sendBtn" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600" disabled>发送消息</button>
+                </div>
+                
+                <div>
+                    <h3 class="text-md font-medium mb-2">消息记录</h3>
+                    <div id="messagesOutput" class="bg-white"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-6 text-center">
+            <a href="/chat" class="text-blue-500 hover:underline">返回聊天室</a> | 
+            <a href="/" class="text-blue-500 hover:underline">返回首页</a>
+        </div>
+    </div>
+    
+    <script src="/js/websocket-test.js"></script>
+</body>
+</html>
